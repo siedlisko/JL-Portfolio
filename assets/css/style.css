@@ -1,83 +1,65 @@
-/* GŁÓWNY PLIK STYLU DLA STRONY */
-:root {
-  --img-base-width: 320px;
-  --single-scale: 0.3; /* 70% mniejszy -> 30% oryginalnej szerokości */
-}
-
+/* RESET I BAZA */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --img-base-width: 320px;
+  --single-scale: 0.3;
 }
 
 body {
-  margin: 0;
-  background: #fff;
+  background: #ffffff;
   font-family: system-ui, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
+/* KONTENER GŁÓWNY (WYŚRODKOWANIE) */
 .wrap {
-  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
   gap: 28px;
-  box-sizing: border-box;
+  padding: 40px 20px;
   text-align: center;
 }
 
-/* Kontener elementu (pozwala kontrolować interaktywność) */
+/* POJEDYNCZY ELEMENT MENU */
 .item {
-  position: relative;
   width: var(--img-base-width);
   max-width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: none;
 }
 
-/* Domyślnie brak interakcji z linkiem, dopiero po najechaniu/skupieniu na .item */
-.item > a.img-wrap {
-  pointer-events: none;
-}
-
-.item:hover > a.img-wrap,
-.item:focus > a.img-wrap,
-.item:focus-within > a.img-wrap {
-  pointer-events: auto;
-}
-
-/* Wiersz / Ramka dla obrazków */
-a.img-wrap,
-button.img-wrap {
+/* KONTENER OBRAZKÓW (KLUCZ DO NAKŁADANIA) */
+.img-wrap {
+  position: relative; /* Pozwala obrazkowi .hover nałożyć się idealnie na .normal */
   display: inline-block;
   width: 100%;
-  position: relative;
+  text-decoration: none;
   overflow: hidden;
   border-radius: 6px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
 }
 
-/* Pierwszy obrazek (statyczny) */
-.single-link.img-wrap {
-  pointer-events: auto;
-}
-
-/* Obrazki: nakładanie na siebie */
+/* OBRAZEK PODSTAWOWY */
 .img-wrap img.normal {
   display: block;
   width: 100%;
   height: auto;
-  transition: opacity .25s ease-in-out;
   opacity: 1;
+  transition: opacity 0.25s ease-in-out;
 }
 
+/* OBRAZEK PO NAJECHANIU (NAŁOŻONY NA WIERZCH) */
 .img-wrap img.hover {
   position: absolute;
   top: 0;
@@ -86,83 +68,30 @@ button.img-wrap {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity .25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
   pointer-events: none;
 }
 
-/* Specjalna klasa gdy hover-image ma być contain (np. element 5) */
+/* Klasa no-cover dla elementu 5 */
 .img-wrap img.hover.no-cover {
   object-fit: contain;
-  background: #fff;
+  background: #ffffff;
 }
 
-/* Efekt najechania (hover / focus) */
-.item:hover .img-wrap img.hover,
-.item:focus .img-wrap img.hover,
-.item:focus-within .img-wrap img.hover {
-  opacity: 1;
-}
-
-.item:hover .img-wrap img.normal,
-.item:focus .img-wrap img.normal,
-.item:focus-within .img-wrap img.normal {
+/* ZMIANA PO NAJECHANIU (HOVER) LUB FOKUSIE */
+.img-wrap:hover img.normal,
+.item:focus-within img.normal {
   opacity: 0;
 }
 
-/* Dostępność / Focus */
-.item:focus {
-  box-shadow: 0 0 0 4px rgba(21,156,228,0.12);
-  border-radius: 6px;
-}
-
-a.img-wrap:focus,
-button.img-wrap:focus {
-  box-shadow: 0 0 0 4px rgba(21,156,228,0.25);
-  outline: none;
-}
-
-/* Potwierdzenie skopiowania */
-.copied-msg {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.85);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 13px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease-in-out;
-  z-index: 10;
-  white-space: nowrap;
-}
-
-.copied-msg.show {
+.img-wrap:hover img.hover,
+.item:focus-within img.hover {
   opacity: 1;
 }
 
-/* Statyczny napis (element 6) */
-.static-text {
-  width: var(--img-base-width);
-  max-width: 90%;
-  color: #111;
-  font-size: 18px;
-}
-
-/* Klasy skalujące */
-a.single-link.img-wrap.tiny,
-.single-link.img-wrap.tiny {
+/* SKALOWANIE POSZCZEGÓLNYCH ELEMENTÓW */
+.single-link.tiny {
   width: calc(var(--img-base-width) * var(--single-scale));
-  max-width: 90%;
-  display: block;
-}
-
-a.single-link.img-wrap.tiny img,
-.single-link.tiny img {
-  width: 100%;
-  height: auto;
 }
 
 .item.scale-150 {
@@ -173,14 +102,36 @@ a.single-link.img-wrap.tiny img,
   width: calc(var(--img-base-width) * 1.3);
 }
 
-p {
-  margin: 0;
-  text-align: center;
+/* POWIADOMIENIE "SKOPIOWANO" */
+.copied-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  white-space: nowrap;
 }
 
-/* Responsywność */
+.copied-msg.show {
+  opacity: 1;
+}
+
+/* STATYCZNY TEKST */
+.static-text {
+  color: #111;
+  font-size: 18px;
+}
+
 @media (max-width: 480px) {
-  :root { 
-    --img-base-width: 260px; 
+  :root {
+    --img-base-width: 260px;
   }
 }
