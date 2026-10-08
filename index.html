@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Julia Lew Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <title>Prosta strona - obrazy jako linki</title>
+  <!-- Wymuszenie odświeżenia pamięci podręcznej przez dodanie ?v=99 -->
+  <link rel="stylesheet" href="style.css?v=99">
 </head>
 <body>
   <div class="wrap">
@@ -14,7 +15,7 @@
     </a>
 
     <!-- 2) Obrazek -->
-    <div class="item" tabindex="0" aria-label="Element 2 - najedź, aby aktywować link">
+    <div class="item" tabindex="0">
       <a class="img-wrap" href="subpage2.html" aria-label="Przejdź do podstrony 2">
         <img class="normal" src="images/menu/o_mnie_image.png" alt="Obraz 2 - normalny">
         <img class="hover" src="images/menu/O_mnie_hover.png" alt="Obraz 2 - wersja po najechaniu">
@@ -22,7 +23,7 @@
     </div>
 
     <!-- 3) Obrazek (50% większy) -->
-    <div class="item scale-150" tabindex="0" aria-label="Element 3 - najedź, aby aktywować link">
+    <div class="item scale-150" tabindex="0">
       <a class="img-wrap" href="subpage3.html" aria-label="Przejdź do podstrony 3">
         <img class="normal" src="images/menu/p_przyrodnicze_image.png" alt="Obraz 3 - normalny">
         <img class="hover" src="images/menu/przyrodnicze_hover.png" alt="Obraz 3 - wersja po najechaniu">
@@ -30,70 +31,46 @@
     </div>
 
     <!-- 4) Obrazek -->
-    <div class="item" tabindex="0" aria-label="Element 4 - najedź, aby aktywować link">
+    <div class="item" tabindex="0">
       <a class="img-wrap" href="subpage4.html" aria-label="Przejdź do podstrony 4">
         <img class="normal" src="images/menu/Kontakt_image.png" alt="Obraz 4 - normalny">
         <img class="hover" src="images/menu/kontakt_hover.png" alt="Obraz 4 - wersja po najechaniu">
       </a>
     </div>
     
-    <!-- 5) Obrazek: email -->
-    <div class="item scale-130" tabindex="0" aria-label="Element 5 - najedź, aby aktywować; klik skopiuje email">
-      <a class="img-wrap" href="#" data-email="juliadarialew@wp.pl" aria-label="Kliknij, aby skopiować adres email">
+    <!-- 5) Obrazek z e-mailem -->
+    <div class="item scale-130" tabindex="0">
+      <a class="img-wrap" href="#" data-email="juliadarialew@wp.pl" aria-label="Kliknij, aby skopiować email">
         <img class="normal" src="images/menu/zlecenia_image.gif" alt="Obraz 5 - animowany GIF">
-        <img class="hover no-cover" src="images/menu/Contact_image.png" alt="Obraz 5 - wersja po najechaniu - kliknij aby skopiować email">
+        <img class="hover no-cover" src="images/menu/Contact_image.png" alt="Obraz 5 - wersja po najechaniu">
         <span class="copied-msg" aria-hidden="true">Skopiowano</span>
       </a>
     </div>
     
     <!-- 6) Statyczny napis -->
-    <div class="static-text" role="status" aria-label="Końcowy napis">
+    <div class="static-text" role="status">
       Copyright Julia Lew
     </div>
   </div>
 
   <script>
-    // Kopiowanie adresu email po kliknięciu dowolnego elementu z data-email
-    document.querySelectorAll('[data-email]').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
+    // Działający skrypt kopiowania po kliknięciu
+    document.querySelectorAll('[data-email]').forEach(link => {
+      link.addEventListener('click', async (e) => {
         e.preventDefault();
-        const email = btn.dataset.email;
+        const email = link.dataset.email;
         if (!email) return;
 
         try {
           await navigator.clipboard.writeText(email);
-          const msg = btn.querySelector('.copied-msg');
+          const msg = link.querySelector('.copied-msg');
           if (msg) {
-            msg.textContent = 'Skopiowano: ' + email;
             msg.classList.add('show');
             setTimeout(() => msg.classList.remove('show'), 2000);
-          } else {
-            alert('Skopiowano: ' + email);
           }
         } catch (err) {
-          console.error('Kopiowanie nie powiodło się', err);
-          alert('Nie udało się skopiować adresu. Proszę skopiować ręcznie: ' + email);
+          alert('Adres email: ' + email);
         }
-      });
-
-      // dostępność: Enter/Space
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          btn.click();
-        }
-      });
-    });
-
-    // Przy focusie kontenera .item przenieś focus na link wewnątrz
-    document.querySelectorAll('.item').forEach(item => {
-      item.addEventListener('focus', () => {
-        const inner = item.querySelector('a.img-wrap');
-        if (inner) inner.focus({preventScroll: true});
-      });
-      item.addEventListener('blur', () => {
-        const inner = item.querySelector('a.img-wrap');
-        if (inner) inner.blur();
       });
     });
   </script>
