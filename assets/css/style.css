@@ -50,7 +50,15 @@ body {
   border-radius: 6px;
 }
 
-/* OBRAZEK PODSTAWOWY */
+/* PIERWSZY OBRAZEK (STATYCZNY) */
+.img-wrap img.single-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 1 !important;
+}
+
+/* OBRAZEK PODSTAWOWY (DLA LINKÓW Z HOVEREM) */
 .img-wrap img.normal {
   display: block;
   width: 100%;
