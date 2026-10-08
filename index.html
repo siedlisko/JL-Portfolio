@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prosta strona - obrazy jako linki</title>
+  <title>Julia Lew Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,47 +14,49 @@
     </a>
 
     <!-- 2) Obrazek -->
-  <div class="item" tabindex="0" aria-label="Element 2 - najedź, aby aktywować link">
-    <a class="img-wrap" href="subpage2.html" aria-label="Przejdź do podstrony 2">
-      <img class="normal" src="images/menu/o_mnie_image.png" alt="Obraz 2 - normalny">
-      <img class="hover" src="images/menu/O_mnie_hover.png" alt="Obraz 2 - wersja po najechaniu">
-    </a>
-  </div>
+    <div class="item" tabindex="0" aria-label="Element 2 - najedź, aby aktywować link">
+      <a class="img-wrap" href="subpage2.html" aria-label="Przejdź do podstrony 2">
+        <img class="normal" src="images/menu/o_mnie_image.png" alt="Obraz 2 - normalny">
+        <img class="hover" src="images/menu/O_mnie_hover.png" alt="Obraz 2 - wersja po najechaniu">
+      </a>
+    </div>
 
     <!-- 3) Obrazek (50% większy) -->
-<div class="item scale-150" tabindex="0" aria-label="Element 3 - najedź, aby aktywować link">
-  <a class="img-wrap" href="subpage3.html" aria-label="Przejdź do podstrony 3">
-    <img class="normal" src="images/menu/p_przyrodnicze_image.png" alt="Obraz 3 - normalny">
-    <img class="hover" src="images/menu/przyrodnicze_hover.png" alt="Obraz 3 - wersja po najechaniu">
-  </a>
-</div>
+    <div class="item scale-150" tabindex="0" aria-label="Element 3 - najedź, aby aktywować link">
+      <a class="img-wrap" href="subpage3.html" aria-label="Przejdź do podstrony 3">
+        <img class="normal" src="images/menu/p_przyrodnicze_image.png" alt="Obraz 3 - normalny">
+        <img class="hover" src="images/menu/przyrodnicze_hover.png" alt="Obraz 3 - wersja po najechaniu">
+      </a>
+    </div>
 
     <!-- 4) Obrazek -->
-<div class="item" tabindex="0" aria-label="Element 4 - najedź, aby aktywować link">
-  <a class="img-wrap" href="subpage4.html" aria-label="Przejdź do podstrony 4">
-    <img class="normal" src="images/menu/Kontakt_image.png" alt="Obraz 4 - normalny">
-    <img class="hover" src="images/menu/kontakt_hover.png" alt="Obraz 4 - wersja po najechaniu">
-  </a>
-</div>
+    <div class="item" tabindex="0" aria-label="Element 4 - najedź, aby aktywować link">
+      <a class="img-wrap" href="subpage4.html" aria-label="Przejdź do podstrony 4">
+        <img class="normal" src="images/menu/Kontakt_image.png" alt="Obraz 4 - normalny">
+        <img class="hover" src="images/menu/kontakt_hover.png" alt="Obraz 4 - wersja po najechaniu">
+      </a>
+    </div>
     
-    <!-- 5) Obrazek: normal powiększony o 30%; hover-image ma klasę no-cover (dopasowuje się do kontenera) -->
-<div class="item scale-130" tabindex="0" aria-label="Element 5 - najedź, aby aktywować; klik skopiuje email">
-  <a class="img-wrap" href="#" data-email="juliadarialew@wp.pl" aria-label="Kliknij, aby skopiować adres email">
-    <img class="normal" src="images/menu/zlecenia_image.gif" alt="Obraz 5 - animowany GIF">
-    <img class="hover no-cover" src="images/menu/Contact_image.png" alt="Obraz 5 - wersja po najechaniu - kliknij aby skopiować email">
-    <span class="copied-msg" aria-hidden="true">Skopiowano</span>
-  </a>
-</div>
+    <!-- 5) Obrazek: email -->
+    <div class="item scale-130" tabindex="0" aria-label="Element 5 - najedź, aby aktywować; klik skopiuje email">
+      <a class="img-wrap" href="#" data-email="juliadarialew@wp.pl" aria-label="Kliknij, aby skopiować adres email">
+        <img class="normal" src="images/menu/zlecenia_image.gif" alt="Obraz 5 - animowany GIF">
+        <img class="hover no-cover" src="images/menu/Contact_image.png" alt="Obraz 5 - wersja po najechaniu - kliknij aby skopiować email">
+        <span class="copied-msg" aria-hidden="true">Skopiowano</span>
+      </a>
+    </div>
     
-   <!-- 6) Statyczny napis -->
-<div class="static-text" role="status" aria-label="Końcowy napis">
-  Copyright Julia Lew
-</div>
+    <!-- 6) Statyczny napis -->
+    <div class="static-text" role="status" aria-label="Końcowy napis">
+      Copyright Julia Lew
+    </div>
+  </div>
 
   <script>
-    // Kopiowanie adresu email po kliknięciu przycisku .copy-btn
-    document.querySelectorAll('.copy-btn').forEach(btn => {
+    // Kopiowanie adresu email po kliknięciu dowolnego elementu z data-email
+    document.querySelectorAll('[data-email]').forEach(btn => {
       btn.addEventListener('click', async (e) => {
+        e.preventDefault();
         const email = btn.dataset.email;
         if (!email) return;
 
@@ -83,14 +85,14 @@
       });
     });
 
-    // Przy focusie kontenera .item przenieś focus na link/btn wewnątrz (ułatwia klawiaturze)
+    // Przy focusie kontenera .item przenieś focus na link wewnątrz
     document.querySelectorAll('.item').forEach(item => {
       item.addEventListener('focus', () => {
-        const inner = item.querySelector('a.img-wrap, button.img-wrap');
+        const inner = item.querySelector('a.img-wrap');
         if (inner) inner.focus({preventScroll: true});
       });
       item.addEventListener('blur', () => {
-        const inner = item.querySelector('a.img-wrap, button.img-wrap');
+        const inner = item.querySelector('a.img-wrap');
         if (inner) inner.blur();
       });
     });
