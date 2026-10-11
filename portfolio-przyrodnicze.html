@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Przyrodnicze - Julia Lew</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
 
+  <div class="wrap">
+
+    <!-- LOGO (POWRÓT DO STRONY GŁÓWNEJ) -->
+    <a class="single-link img-wrap tiny" href="https://julialew.pl" aria-label="Strona główna">
+      <img class="single-img" src="images/logo-glowne.png" alt="Logo Julia Lew">
+    </a>
+
+    <!-- GALERIA ZDJĘĆ -->
+    <section class="gallery-grid">
+      <!-- Aby dodać kolejne zdjęcie, po prostu skopiuj poniższy blok <div> -->
+      <div class="gallery-item">
+        <img src="images/przyroda-01.jpg" alt="Zdjęcie przyrodnicze 1" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/przyroda-02.jpg" alt="Zdjęcie przyrodnicze 2" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/przyroda-03.jpg" alt="Zdjęcie przyrodnicze 3" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/przyroda-04.jpg" alt="Zdjęcie przyrodnicze 4" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/przyroda-05.jpg" alt="Zdjęcie przyrodnicze 5" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="images/przyroda-06.jpg" alt="Zdjęcie przyrodnicze 6" loading="lazy">
+      </div>
+    </section>
+
+    <!-- PRZYCISK/OBRAZEK Z HOVEREM POWRACAJĄCY NA STRONĘ GŁÓWNĄ -->
+    <div class="item">
+      <a class="img-wrap" href="https://julialew.pl" aria-label="Powrót do strony głównej">
+        <img class="normal" src="images/przycisk-home-normal.png" alt="Powrót do strony głównej">
+        <img class="hover" src="images/przycisk-home-hover.png" alt="Powrót do strony głównej">
+      </a>
+    </div>
+
+    <!-- STATYCZNY TEKST NA KOŃCU STRONY -->
+    <p class="static-text">© Julia Lew. Wszystkie prawa zastrzeżone.</p>
+
+  </div>
+
+  <!-- LIGHTBOX (POWIĘKSZENIE ZDJĘĆ Z NAWIGACJĄ) -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-prev" aria-label="Poprzednie zdjęcie">&#10094;</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Powiększone zdjęcie">
+    </div>
+    <button class="lightbox-next" aria-label="Następne zdjęcie">&#10095;</button>
+  </div>
+
+  <!-- SKRYPT OBSŁUGUJĄCY LIGHTBOX -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const closeBtn = document.querySelector('.lightbox-close');
+      const prevBtn = document.querySelector('.lightbox-prev');
+      const nextBtn = document.querySelector('.lightbox-next');
+      
+      let currentIndex = 0;
+
+      function showImage(index) {
+        if (index < 0) index = galleryItems.length - 1;
+        if (index >= galleryItems.length) index = 0;
+        currentIndex = index;
+        lightboxImg.src = galleryItems[currentIndex].src;
+        lightboxImg.alt = galleryItems[currentIndex].alt;
+      }
+
+      function openLightbox(index) {
+        showImage(index);
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+      }
+
+      galleryItems.forEach((img, idx) => {
+        img.addEventListener('click', () => openLightbox(idx));
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      prevBtn.addEventListener('click', () => showImage(currentIndex - 1));
+      nextBtn.addEventListener('click', () => showImage(currentIndex + 1));
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+        if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+      });
+    });
+  </script>
+
+</body>
+</html>
