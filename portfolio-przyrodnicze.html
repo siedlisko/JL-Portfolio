@@ -19,30 +19,30 @@
     <section class="gallery-grid">
       <!-- Aby dodać kolejne zdjęcie, po prostu skopiuj poniższy blok <div> -->
       <div class="gallery-item">
-        <img src="images/przyroda-01.jpg" alt="Zdjęcie przyrodnicze 1" loading="lazy">
+        <img src="images/przyrodnicze/Nasiezrzal_low.png" data-full="images/przyrodnicze/high-reso/Nasiezrzal_normal.png" alt="Zdjęcie przyrodnicze 1" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/przyroda-02.jpg" alt="Zdjęcie przyrodnicze 2" loading="lazy">
+        <img src="images/przyrodnicze/Modrosojka_low.PNG" data-full="images/przyrodnicze/high-reso/Modrosojka_normal.PNG" alt="Zdjęcie przyrodnicze 2" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/przyroda-03.jpg" alt="Zdjęcie przyrodnicze 3" loading="lazy">
+        <img src="images/przyrodnicze/Grzybowka_low.png" data-full="images/przyrodnicze/high-reso/Grzybowka_normal.png" alt="Zdjęcie przyrodnicze 3" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/przyroda-04.jpg" alt="Zdjęcie przyrodnicze 4" loading="lazy">
+        <img src="images/przyrodnicze/Kozica_low.PNG" data-full="images/przyrodnicze/high-reso/Kozica_normal.PNG" alt="Zdjęcie przyrodnicze 4" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/przyroda-05.jpg" alt="Zdjęcie przyrodnicze 5" loading="lazy">
+        <img src="images/przyrodnicze/Granat_low.png" data-full="images/przyrodnicze/high-reso/Granat_normal.png" alt="Zdjęcie przyrodnicze 5" loading="lazy">
       </div>
       <div class="gallery-item">
-        <img src="images/przyroda-06.jpg" alt="Zdjęcie przyrodnicze 6" loading="lazy">
+        <img src="images/przyrodnicze/Dziewiecsil_low.png" data-full="images/przyrodnicze/high-reso/Dziewiecsil_normal.png" alt="Zdjęcie przyrodnicze 6" loading="lazy">
       </div>
     </section>
 
     <!-- PRZYCISK/OBRAZEK Z HOVEREM POWRACAJĄCY NA STRONĘ GŁÓWNĄ -->
     <div class="item">
       <a class="img-wrap" href="https://julialew.pl" aria-label="Powrót do strony głównej">
-        <img class="normal" src="images/przycisk-home-normal.png" alt="Powrót do strony głównej">
-        <img class="hover" src="images/przycisk-home-hover.png" alt="Powrót do strony głównej">
+        <img class="normal" src="images/menu/wroc_image_0.png" alt="Powrót do strony głównej">
+        <img class="hover" src="images/menu/wroc_image.png" alt="Powrót do strony głównej">
       </a>
     </div>
 
@@ -61,7 +61,7 @@
     <button class="lightbox-next" aria-label="Następne zdjęcie">&#10095;</button>
   </div>
 
-  <!-- SKRYPT OBSŁUGUJĄCY LIGHTBOX -->
+<!-- SKRYPT OBSŁUGUJĄCY LIGHTBOX -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const galleryItems = Array.from(document.querySelectorAll('.gallery-item img'));
@@ -77,8 +77,13 @@
         if (index < 0) index = galleryItems.length - 1;
         if (index >= galleryItems.length) index = 0;
         currentIndex = index;
-        lightboxImg.src = galleryItems[currentIndex].src;
-        lightboxImg.alt = galleryItems[currentIndex].alt;
+
+        const currentImg = galleryItems[currentIndex];
+        // Pobiera wersję wysokiej jakości z data-full, a jeśli jej nie ma, używa src
+        const fullSrc = currentImg.getAttribute('data-full') || currentImg.src;
+
+        lightboxImg.src = fullSrc;
+        lightboxImg.alt = currentImg.alt;
       }
 
       function openLightbox(index) {
@@ -114,6 +119,5 @@
       });
     });
   </script>
-
 </body>
 </html>
