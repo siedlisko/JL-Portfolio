@@ -1,0 +1,150 @@
+/* ==========================================
+   RESET I USTAWIENIA PODSTAWOWE
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --max-width: 900px;
+  --img-base-width: 320px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #ffffff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+   KONTENER GŁÓWNY (WYŚRODKOWANIE)
+   ========================================== */
+.site {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 3rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   NAGŁÓWEK I LOGO
+   ========================================== */
+header {
+  margin-bottom: 1.5rem;
+}
+
+header .logo img {
+  max-width: 220px;
+  height: auto;
+  display: inline-block;
+}
+
+/* ==========================================
+   TREŚĆ GŁÓWNA (MAIN)
+   ========================================== */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.75rem 0;
+}
+
+.about-text {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  color: #333333;
+}
+
+/* KONTENER DLA OBRAZKA O MNIE */
+.item {
+  width: var(--img-base-width);
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-wrap {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.img-wrap img,
+.img-wrap img.single-img,
+.profile-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* WARIANT: OBRAZEK NA PEŁNĄ SZEROKOŚĆ EKRANU (VIEWPORTU) */
+.item.full-width {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.item.full-width .img-wrap {
+  border-radius: 0;
+}
+
+/* ==========================================
+   STOPKA I LINKI
+   ========================================== */
+footer {
+  margin-top: 2.5rem;
+  color: #666666;
+  font-size: 0.9rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   RESPONSYWNOŚĆ (MOBILNE)
+   ========================================== */
+@media (max-width: 480px) {
+  :root {
+    --img-base-width: 280px;
+  }
+
+  .site {
+    padding: 2rem 1rem;
+  }
+  
+  header .logo img {
+    max-width: 180px;
+  }
+}
