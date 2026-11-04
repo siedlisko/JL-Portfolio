@@ -145,6 +145,11 @@ h1 {
   opacity: 1;
 }
 
+/* Zmniejszenie elementu o połowę (50%) */
+.item.scale-50 {
+  width: calc(var(--img-base-width) * 0.5);
+}
+
 /* ==========================================
    STOPKA
    ========================================== */
