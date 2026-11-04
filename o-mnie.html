@@ -6,37 +6,49 @@
   <title>O mnie - Julia Lew</title>
   <meta name="description" content="O mnie - Julia Lew">
   <link rel="icon" href="https://julialew.pl/wp-content/uploads/2026/02/Simple-logo-lew.png">
-  <!-- Podpięty zewnętrzny plik ze stylami -->
+  <!-- Podpięcie arkusza stylów dla podstrony o mnie -->
   <link rel="stylesheet" href="assets/css/o-mnie.css">
 </head>
 <body>
-  <div class="site">
-    <header>
-      <a class="single-link img-wrap tiny" href="https://julialew.pl" aria-label="Strona główna">
-        <img class="single-img" src="images/logo-glowne.png" alt="Logo Julia Lew">
-      </a>
-    </header>
+  <div class="wrap">
+    <!-- 1) Logo na górze (spójne ze stroną główną) -->
+    <a class="single-link img-wrap tiny" href="https://julialew.pl/" aria-label="Strona główna">
+      <img class="single-img" src="images/logo-glowne.png" alt="Julia Lew">
+    </a>
 
-    <main role="main">
-      <h1>Julia Lew</h1>
-      <p class="about-text">Tu będzie coś o mnie, jak dowiem się kim jestem..</p>
-      
-      <!-- Obrazek na całą szerokość lub standardowy -->
-      <div class="item" tabindex="0">
-        <a class="img-wrap">
-          <img class="single-img" src="images/lew-about.gif" alt="Julia Lew - O mnie">
-        </a>
+    <!-- 2) Sekcja główna: Obrazek (1/3) i Tekst (5 akapitów, 2/3) -->
+    <main role="main" class="about-container">
+      <!-- Lewa kolumna: Obrazek (1/3 szerokości) -->
+      <div class="about-image-col">
+        <div class="img-wrap">
+          <img class="single-img" src="assets/img/lew.GIF" alt="Julia Lew - O mnie">
+        </div>
+      </div>
+
+      <!-- Prawa kolumna: 5 akapitów (2/3 szerokości) -->
+      <div class="about-text-col">
+        <p class="custom-font-text p1">Za dnia jestem <span class="highlight">ilustratorką</span>, graficzką (mam na to papiery<span class="highlight">*</span>). Wieczorami <span class="highlight">muzykantką</span> rozmiłowaną w tradycyjnej muzyce polskiej wsi.</p>
+        
+        <p class="custom-font-text">Najwięcej inspiracji i wglądów czerpię z przyrody, lasu. Interesuje mnie ziołolecznictwo, etnobotanika, tworzenie własnych naturalnych pigmentów, które potem wykorzystuję w malarstwie czy barwieniu tkanin. Fascynuje mnie sztuka ludowa i rzemiosło. I koty.</p>
+        
+        <p class="custom-font-text">Wczesną wiosną 2026 przeprowadziłam się na wieś, gdzie współtworzę regeneratywny, bioróżnorodny ekosystem. Zakładam rabaty naturalistyczne, łąki, staram się działać i prowadzić ogród i pracownię artystyczną w duchu permakultury. Bardzo przemawia do mnie bioróżnorodność. Pewnie stąd tyle zainteresowań i możliwych kierunków współpracy.</p>
+        
+        <p class="custom-font-text">Chętnie podejmę się stworzenia ilustracji książkowych, okładek, plakatów, jak i malowania mebli, tkanin, szycia pokrowców na instrumenty, czy innych mniej lub bardziej oczywistych zleceń.</p>
+        
+        <p class="custom-font-text p5"><span class="black-part">*licencja<span class="black-letter">z</span>t z grafiki warsztatowej na Uniwersytecie Artystycznym im. Magdaleny Abakanowicz w Poznaniu
+magisterka z ilustracji <span class="black-part-static">na Edinburgh College of Art</span></p>
       </div>
     </main>
 
-    <!-- PRZYCISK/OBRAZEK Z HOVEREM POWRACAJĄCY NA STRONĘ GŁÓWNĄ -->
-    <div class="item scale-50">
+    <!-- 3) Przycisk powrotu z efektem hover -->
+    <div class="item scale-50" tabindex="0">
       <a class="img-wrap" href="https://julialew.pl" aria-label="Powrót do strony głównej">
         <img class="normal" src="images/menu/wroc_image_0.png" alt="Powrót do strony głównej">
         <img class="hover" src="images/menu/wroc_image.png" alt="Powrót do strony głównej">
       </a>
     </div>
 
+    <!-- 4) Stopka -->
     <footer>
       <p>© 2026 Julia Lew</p>
     </footer>
