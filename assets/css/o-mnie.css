@@ -16,6 +16,7 @@
   --max-width: 1100px;
   --img-base-width: 320px;
   --single-scale: 0.3;
+  --accent-color: #e435df; /* Poprawiony, pełny 6-znakowy kod koloru */
 }
 
 html, body {
@@ -98,44 +99,40 @@ body {
   height: auto;
 }
 
-/* Prawa kolumna (2/3 szerokości) – wyśrodkowanie zawartości */
+/* Prawa kolumna (2/3 szerokości) – wyśrodkowanie */
 .about-text-col {
   flex: 0 0 66.666%;
   max-width: 66.666%;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center; 
+  align-items: center;
+  text-align: center;
 }
 
-/* Styl akapitów – użycie czcionki Space Mono i wyśrodkowanie wewnątrz kolumny 2/3 */
+/* Ogólny styl akapitów (czcionka Space Mono, wyśrodkowanie) */
 .custom-font-text {
   font-family: 'Space Mono', monospace;
   font-size: 1.125rem;
   line-height: 1.6;
-  color: #222222; /* Domyślnie czarny tekst dla akapitów 2, 3 i 4 */
+  color: #222222; /* Domyślnie czarny tekst (dla akapitów 2, 3, 4) */
   width: 100%;
   max-width: 90%;
-  text-align: left; 
+  text-align: center;
   margin: 0 auto;
 }
 
-/* 1. Akapit: domyślnie kolor #e435d, a wskazane słowa i gwiazdka czarne (#222222) */
-.custom-font-text.p1 {
-  color: #e435d;
-}
+/* 1. Akapit: domyślnie czarny, a wybrane słowa i gwiazdka w kolorze akcentu */
 .custom-font-text.p1 .highlight {
-  color: #222222;
+  color: var(--accent-color);
 }
 
-/* 5. Akapit: domyślnie kolor #e435d, a gwiazdka, litery "z" oraz Edinburgh College of Art czarne */
+/* 5. Akapit: domyślnie w kolorze akcentu, a wskazane fragmenty czarne */
 .custom-font-text.p5 {
-  color: #e435d;
+  color: var(--accent-color);
   white-space: pre-line;
 }
-.custom-font-text.p5 .black-part,
-.custom-font-text.p5 .black-letter,
-.custom-font-text.p5 .black-part-static {
+.custom-font-text.p5 .black-text {
   color: #222222;
 }
 
@@ -225,9 +222,5 @@ footer {
   .about-image-col {
     max-width: 260px;
     margin: 0 auto;
-  }
-
-  .custom-font-text {
-    text-align: center;
   }
 }
