@@ -53,6 +53,7 @@ body {
   width: calc(var(--img-base-width) * var(--single-scale));
   max-width: 90%;
   display: block;
+  margin: 0 auto; /* <-- To sprawi, że logo ustawi się na środku */
   text-decoration: none;
 }
 
